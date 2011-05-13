@@ -6,14 +6,13 @@ UIColor+ColorWithHex was inspired by the lack of hexadecimal colour integration 
 Methods
 -------------------------------
 
-+ (UIColor *)colorWithHex:(UInt32)hexadecimal;
-+ (UIColor *)colorWithHexString:(NSString *)hexadecimal;
-+ (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal;
-+ (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
-+ (NSString *)colorWithRGBToHex:(UIColor *)color;
-+ (UIColor *)randomColor;
-// ObjC (manual hex conversion to RGB)
-+ (UIColor *)colorWithHexa:(NSString *)hexadecimal;
++ + (UIColor *)colorWithHex:(UInt32)hexadecimal;
++ + (UIColor *)colorWithHexString:(NSString *)hexadecimal;
++ + (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal;
++ + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
++ + (NSString *)colorWithRGBToHex:(UIColor *)color;
++ + (UIColor *)randomColor;
++ + (UIColor *)colorWithHexa:(NSString *)hexadecimal;
 
 Install
 -------------------------------
