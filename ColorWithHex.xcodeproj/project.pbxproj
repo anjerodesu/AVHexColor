@@ -22,6 +22,7 @@
 		6D4E3975137CCF5A008DEEFC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D4E3973137CCF5A008DEEFC /* InfoPlist.strings */; };
 		6D4E3978137CCF5A008DEEFC /* ColorWithHexTests.h in Resources */ = {isa = PBXBuildFile; fileRef = 6D4E3977137CCF5A008DEEFC /* ColorWithHexTests.h */; };
 		6D4E397A137CCF5A008DEEFC /* ColorWithHexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E3979137CCF5A008DEEFC /* ColorWithHexTests.m */; };
+		6D4E3986137CCF79008DEEFC /* UIColor+ColorWithHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E3985137CCF79008DEEFC /* UIColor+ColorWithHex.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,22 +40,24 @@
 		6D4E394A137CCF59008DEEFC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6D4E394C137CCF59008DEEFC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6D4E394E137CCF59008DEEFC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6D4E3952137CCF59008DEEFC /* ColorWithHex-Info.plist */ = {isa = PBXFileReference; path = "ColorWithHex-Info.plist"; sourceTree = "<group>"; };
+		6D4E3952137CCF59008DEEFC /* ColorWithHex-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ColorWithHex-Info.plist"; sourceTree = "<group>"; };
 		6D4E3954137CCF59008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6D4E3956137CCF59008DEEFC /* ColorWithHex-Prefix.pch */ = {isa = PBXFileReference; path = "ColorWithHex-Prefix.pch"; sourceTree = "<group>"; };
+		6D4E3956137CCF59008DEEFC /* ColorWithHex-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorWithHex-Prefix.pch"; sourceTree = "<group>"; };
 		6D4E3957137CCF59008DEEFC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6D4E3959137CCF59008DEEFC /* ColorWithHexAppDelegate.h */ = {isa = PBXFileReference; path = ColorWithHexAppDelegate.h; sourceTree = "<group>"; };
+		6D4E3959137CCF59008DEEFC /* ColorWithHexAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWithHexAppDelegate.h; sourceTree = "<group>"; };
 		6D4E395A137CCF59008DEEFC /* ColorWithHexAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWithHexAppDelegate.m; sourceTree = "<group>"; };
 		6D4E395D137CCF59008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		6D4E395F137CCF59008DEEFC /* ColorWithHexViewController.h */ = {isa = PBXFileReference; path = ColorWithHexViewController.h; sourceTree = "<group>"; };
+		6D4E395F137CCF59008DEEFC /* ColorWithHexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWithHexViewController.h; sourceTree = "<group>"; };
 		6D4E3960137CCF59008DEEFC /* ColorWithHexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWithHexViewController.m; sourceTree = "<group>"; };
 		6D4E3963137CCF59008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorWithHexViewController.xib; sourceTree = "<group>"; };
 		6D4E396A137CCF59008DEEFC /* ColorWithHexTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorWithHexTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D4E3972137CCF5A008DEEFC /* ColorWithHexTests-Info.plist */ = {isa = PBXFileReference; path = "ColorWithHexTests-Info.plist"; sourceTree = "<group>"; };
+		6D4E3972137CCF5A008DEEFC /* ColorWithHexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ColorWithHexTests-Info.plist"; sourceTree = "<group>"; };
 		6D4E3974137CCF5A008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6D4E3976137CCF5A008DEEFC /* ColorWithHexTests-Prefix.pch */ = {isa = PBXFileReference; path = "ColorWithHexTests-Prefix.pch"; sourceTree = "<group>"; };
+		6D4E3976137CCF5A008DEEFC /* ColorWithHexTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorWithHexTests-Prefix.pch"; sourceTree = "<group>"; };
 		6D4E3977137CCF5A008DEEFC /* ColorWithHexTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWithHexTests.h; sourceTree = "<group>"; };
 		6D4E3979137CCF5A008DEEFC /* ColorWithHexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWithHexTests.m; sourceTree = "<group>"; };
+		6D4E3984137CCF79008DEEFC /* UIColor+ColorWithHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorWithHex.h"; sourceTree = "<group>"; };
+		6D4E3985137CCF79008DEEFC /* UIColor+ColorWithHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorWithHex.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		6D4E393B137CCF59008DEEFC = {
 			isa = PBXGroup;
 			children = (
+				6D4E3983137CCF65008DEEFC /* UIColor+ColorWithHex */,
 				6D4E3950137CCF59008DEEFC /* ColorWithHex */,
 				6D4E3970137CCF5A008DEEFC /* ColorWithHexTests */,
 				6D4E3949137CCF59008DEEFC /* Frameworks */,
@@ -153,6 +157,15 @@
 				6D4E3976137CCF5A008DEEFC /* ColorWithHexTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6D4E3983137CCF65008DEEFC /* UIColor+ColorWithHex */ = {
+			isa = PBXGroup;
+			children = (
+				6D4E3984137CCF79008DEEFC /* UIColor+ColorWithHex.h */,
+				6D4E3985137CCF79008DEEFC /* UIColor+ColorWithHex.m */,
+			);
+			name = "UIColor+ColorWithHex";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,7 @@
 				6D4E3958137CCF59008DEEFC /* main.m in Sources */,
 				6D4E395B137CCF59008DEEFC /* ColorWithHexAppDelegate.m in Sources */,
 				6D4E3961137CCF59008DEEFC /* ColorWithHexViewController.m in Sources */,
+				6D4E3986137CCF79008DEEFC /* UIColor+ColorWithHex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

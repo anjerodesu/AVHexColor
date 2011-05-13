@@ -12,4 +12,10 @@
     
 }
 
+@property (nonatomic, retain) IBOutlet UILabel *lblColorWithHex;
+@property (nonatomic, retain) IBOutlet UILabel *lblColorWithHexString;
+@property (nonatomic, retain) IBOutlet UILabel *lblColorWithAlphaHex;
+@property (nonatomic, retain) IBOutlet UILabel *lblColorWithAlphaHexString;
+@property (nonatomic, retain) IBOutlet UILabel *lblRandomColor;
+
 @end
