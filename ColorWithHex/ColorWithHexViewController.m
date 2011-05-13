@@ -44,6 +44,8 @@
 	[lblColorWithHexString setBackgroundColor: [UIColor colorWithHexString: @"#00ff00"]];
 	[lblColorWithHexString setText: @"ColorWithHexString : @\"#00FF00\""];
 	
+	// The first 2 digit (88) is alpha
+	// (FF) for opaque and (00) for transparent
 	[lblColorWithAlphaHex setBackgroundColor: [UIColor colorWithAlphaHex: 0x880000ff]];
 	[lblColorWithAlphaHex setText: @"ColorWithAlphaHex : 0x880000FF"];
 	

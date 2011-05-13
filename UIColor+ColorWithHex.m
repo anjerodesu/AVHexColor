@@ -76,6 +76,7 @@
 {
 	CGFloat red, green, blue, alpha;
 	
+	// Bit shift right the hexadecimal's first 2 values for alpha
 	alpha = (hexadecimal >> 24) & 0xFF;
 	red = (hexadecimal >> 16) & 0xFF;
 	green = (hexadecimal >> 8) & 0xFF;
@@ -103,7 +104,9 @@
 
 + (NSString *)colorWithRGBToHex:(UIColor *)color
 {
+	// Get the color components of the color
 	const CGFloat *components = CGColorGetComponents([color CGColor]);
+	// Multiply it by 255 and display the result using an uppercase hexadecimal specifier (%X) with a character length of 2
 	NSString *hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X", (int)(255 * components[0]), (int)(255 * components[1]), (int)(255 * components[2])];
 	
 	return hexadecimal;
@@ -113,13 +116,16 @@
 {
 	static BOOL generated = NO;
 	
-	// If the randomColor hasn't been generated yet, then generate
+	// If the randomColor hasn't been generated yet,
+	// reset the time to generate another sequence
 	if (!generated)
 	{
 		generated = YES;
 		srandom(time(NULL));
 	}
 	
+	// Generate a random number and divide it using the
+	// maximum possible number random() can be generated
 	CGFloat red = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
@@ -131,9 +137,17 @@
 // Converting using Hex to RGB formula (Manual)
 + (UIColor *)colorWithHexa:(NSString *)hexadecimal
 {
+	// Make sure that the hexadecimal value has an uppercase letters
 	hexadecimal = [hexadecimal uppercaseString];
 	NSInteger a;
 	
+	/*
+	 If hexadecimal has a hash tag (#), remove it.
+	 This purpose is solely for copy-pasting the whole hexadecimal
+	 value that mostly consist of a hash-tag + the 6 characters
+	 (e.i. #000000). Making sure that our little piece of software
+	 will still accept the format.
+	 */
 	if ([[hexadecimal substringWithRange: NSMakeRange(0, 1)] isEqualToString: @"#"])
 	{
 		a = 1;
@@ -153,11 +167,13 @@
 	NSMutableArray *hexArray = [[NSMutableArray alloc] init];
 	NSMutableArray *hexConverted = [[NSMutableArray alloc] init];
 	
+	// Separate all the characters
 	for (NSInteger x = a; x < [hexadecimal length]; x++)
 	{
 		[hexArray insertObject: [hexadecimal substringWithRange: NSMakeRange(x, 1)]	atIndex: x - 1];
 	}
 	
+	// Convert the characters to their respective Base16 format
 	for (NSString *hexa in hexArray)
 	{
 		if ([hexConstants valueForKey: hexa])
