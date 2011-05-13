@@ -1,7 +1,7 @@
 UIColor+ColorWithHex
 ===============================
 
-UIColor+ColorWithHex was inspired by Apple's lack of hexadecimal integration.
+UIColor+ColorWithHex was inspired by the lack of hexadecimal colour integration of iOS.
 
 Methods
 -------------------------------
