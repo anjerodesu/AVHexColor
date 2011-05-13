@@ -3,7 +3,7 @@
 //  ColorWithHex
 //
 //  Created by Angelo Villegas on 3/24/11.
-//  Copyright (c) 2011 Studio Villegas. All rights reserved.
+//  Copyright (c) 2011 Studio Villegas.
 //	http://www.studiovillegas.com/
 //
 //  Permission is hereby granted, free of charge, to any person

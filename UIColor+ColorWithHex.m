@@ -3,7 +3,7 @@
 //  ColorWithHex
 //
 //  Created by Angelo Villegas on 3/24/11.
-//  Copyright (c) 2011 Studio Villegas. All rights reserved.
+//  Copyright (c) 2011 Studio Villegas.
 //	http://www.studiovillegas.com/
 //
 //  Permission is hereby granted, free of charge, to any person
@@ -39,8 +39,11 @@
 {
 	CGFloat red, green, blue;
 	
+	// Bit shift right the hexadecimal's first 2 values
 	red = (hexadecimal >> 16) & 0xFF;
+	// Bit shift right the hexadecimal's 2 middle values
 	green = (hexadecimal >> 8) & 0xFF;
+	// Bit shift right the hexadecimal's last 2 values
 	blue = hexadecimal & 0xFF;
 	
     return [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
@@ -48,9 +51,15 @@
 
 + (UIColor *)colorWithHexString:(NSString *)hexadecimal
 {
+	// Convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
 	long int hex;
 	
+	/*
+	 If the string contains hash tag (#)
+	 If yes then remove hash tag and convert the C string
+	 to a base-16 int
+	 */
 	if (cString[0] == '#')
 	{
 		hex = strtol(cString + 1, NULL, 16);
@@ -104,6 +113,7 @@
 {
 	static BOOL generated = NO;
 	
+	// If the randomColor hasn't been generated yet, then generate
 	if (!generated)
 	{
 		generated = YES;
@@ -139,7 +149,6 @@
 	 Conversion:
 	 10 = A	11 = B	12 = C	13 = D	14 = E	15 = F
 	 */
-	
 	NSDictionary *hexConstants = [NSDictionary dictionaryWithObjectsAndKeys: @"10", @"A", @"11", @"B", @"12", @"C", @"13", @"D", @"14", @"E", @"15", @"F", nil];
 	NSMutableArray *hexArray = [[NSMutableArray alloc] init];
 	NSMutableArray *hexConverted = [[NSMutableArray alloc] init];

@@ -233,7 +233,7 @@
 		<string>IDEEditorArea</string>
 		<integer>0</integer>
 		<true/>
-		<string>UIColor+ColorWithHex.h</string>
+		<string>UIColor+ColorWithHex.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -549,7 +549,7 @@
 		</dict>
 		<string>ColorWithHex</string>
 		<string>UIColor+ColorWithHex</string>
-		<string>UIColor+ColorWithHex.h</string>
+		<string>UIColor+ColorWithHex.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1210,7 +1210,7 @@
 				<integer>120</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.h</string>
+			<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -1784,7 +1784,7 @@
 		<string>DocumentNavigableItemName</string>
 		<string>DocumentExtensionIdentifier</string>
 		<string>DocumentURL</string>
-		<string>public.c-header</string>
+		<string>public.objective-c-source</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1920,10 +1920,10 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>326954683.92101699</real>
-		<string>{0, 1755}</string>
-		<string>{1749, 0}</string>
-		<string>@interface UIColor(ColorWithHex)</string>
+		<real>326961826.347552</real>
+		<string>{2194, 1256}</string>
+		<string>{4258, 0}</string>
+		<string>+colorWithHexa:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -1942,7 +1942,7 @@
 				<integer>188</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.h</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.m</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -6121,19 +6121,19 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>445</integer>
+					<integer>444</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>447</integer>
+					<integer>446</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>449</integer>
+					<integer>448</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>451</integer>
+					<integer>450</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -6182,17 +6182,8 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>444</integer>
+				<integer>119</integer>
 			</dict>
-		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>120</integer>
-			</dict>
-			<key>NS.string</key>
-			<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.m</string>
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -6208,7 +6199,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>446</integer>
+				<integer>445</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -6234,7 +6225,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>448</integer>
+				<integer>447</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -6260,7 +6251,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>450</integer>
+				<integer>449</integer>
 			</dict>
 		</dict>
 		<dict>
@@ -6286,8 +6277,17 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>119</integer>
+				<integer>451</integer>
 			</dict>
+		</dict>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>120</integer>
+			</dict>
+			<key>NS.string</key>
+			<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.h</string>
 		</dict>
 		<dict>
 			<key>$class</key>
@@ -6360,9 +6360,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>326954678.91246599</real>
-		<string>{0, 1890}</string>
-		<string>{793, 0}</string>
+		<real>326961826.346645</real>
+		<string>{2194, 1256}</string>
+		<string>{4258, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6408,9 +6408,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>326954673.50743902</real>
-		<string>{308, 1743}</string>
-		<string>{992, 0}</string>
+		<real>326960662.90641099</real>
+		<string>{0, 1599}</string>
+		<string>{1553, 45}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6551,9 +6551,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>326954683.91987002</real>
-		<string>{0, 1755}</string>
-		<string>{1749, 0}</string>
+		<real>326960660.60294503</real>
+		<string>{0, 1734}</string>
+		<string>{166, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6599,7 +6599,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>326954614.93792403</real>
+		<real>326960661.67412901</real>
 		<string>{0, 606}</string>
 		<string>{599, 0}</string>
 		<dict>
@@ -7091,7 +7091,7 @@
 				<integer>525</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.h</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7109,7 +7109,7 @@
 				<integer>527</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.m</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexViewController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7127,7 +7127,7 @@
 				<integer>529</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexAppDelegate.m</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexViewController.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7145,7 +7145,7 @@
 				<integer>531</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexViewController.m</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/UIColor+ColorWithHex.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7163,7 +7163,7 @@
 				<integer>533</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexViewController.h</string>
+		<string>file://localhost/Users/numlockph-dev01/Documents/Programming/ColorWithHex/ColorWithHex/ColorWithHexAppDelegate.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
