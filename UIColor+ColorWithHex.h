@@ -32,13 +32,23 @@
 
 
 @interface UIColor (ColorWithHex)
-
+// Convert hexadecimal value to RGB
 + (UIColor *)colorWithHex:(UInt32)hexadecimal;
 + (UIColor *)colorWithHexString:(NSString *)hexadecimal;
+
+// Convert hexadecimal value to RGB
+// format:
+//	0x = Hexadecimal specifier (# for strings)
+//	ff = alpha, ff = red, ff = green, ff = blue
 + (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal;
 + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
+
+// Return the hexadecimal value of the RGB color specified.
 + (NSString *)colorWithRGBToHex:(UIColor *)color;
+
+// Generates a color randomly
 + (UIColor *)randomColor;
+
 // ObjC (manual hex conversion to RGB)
 + (UIColor *)colorWithHexa:(NSString *)hexadecimal;
 
