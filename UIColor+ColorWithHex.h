@@ -44,7 +44,7 @@
 + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
 
 // Return the hexadecimal value of the RGB color specified.
-+ (NSString *)colorWithRGBToHex:(UIColor *)color;
++ (NSString *)hexStringWithRed: (CGFloat)red Green: (CGFloat)green Blue: (CGFloat)blue;
 
 // Generates a color randomly
 + (UIColor *)randomColor;
