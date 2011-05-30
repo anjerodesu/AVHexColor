@@ -10,7 +10,7 @@ Methods
 + + (UIColor *)colorWithHexString:(NSString *)hexadecimal;
 + + (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal;
 + + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
-+ + (NSString *)colorWithRGBToHex:(UIColor *)color;
++ + (NSString *)hexStringWithRed: (CGFloat)red Green: (CGFloat)green Blue: (CGFloat)blue;
 + + (UIColor *)randomColor;
 + + (UIColor *)colorWithHexa:(NSString *)hexadecimal;
 
