@@ -375,6 +375,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorWithHex/ColorWithHex-Prefix.pch";
 				INFOPLIST_FILE = "ColorWithHex/ColorWithHex-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -388,6 +392,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorWithHex/ColorWithHex-Prefix.pch";
 				INFOPLIST_FILE = "ColorWithHex/ColorWithHex-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -457,6 +465,7 @@
 				6D4E397F137CCF5A008DEEFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6D4E3980137CCF5A008DEEFC /* Build configuration list for PBXNativeTarget "ColorWithHexTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +474,7 @@
 				6D4E3982137CCF5A008DEEFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

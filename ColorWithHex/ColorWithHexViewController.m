@@ -54,7 +54,7 @@
 	
 	UIColor *randomColor = [UIColor randomColor];
 	[lblRandomColor setBackgroundColor: randomColor];
-	[lblRandomColor setText: [@"Color (Random) : " stringByAppendingString: [UIColor colorWithRGBToHex: randomColor]]];
+	[lblRandomColor setText: [@"Color (Random) : " stringByAppendingString: [UIColor hexStringFromColor: randomColor]]];
 }
 
 - (void)viewDidUnload

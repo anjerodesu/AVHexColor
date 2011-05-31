@@ -102,10 +102,8 @@
 	return [UIColor colorWithAlphaHex: hex];
 }
 
-+ (NSString *)hexStringWithRed:(CGFloat)red Green:(CGFloat)green Blue:(CGFloat)blue
++ (NSString *)hexStringFromColor: (UIColor *)color
 {
-	// Create a color
-	UIColor *color = [UIColor colorWithRed: red green: green blue: blue alpha: 1.0f];
 	// Get the color components of the color
 	const CGFloat *components = CGColorGetComponents([color CGColor]);
 	// Multiply it by 255 and display the result using an uppercase hexadecimal specifier (%X) with a character length of 2
