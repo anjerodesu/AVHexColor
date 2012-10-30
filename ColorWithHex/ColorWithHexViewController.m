@@ -17,10 +17,6 @@
 @synthesize lblColorWithAlphaHexString;
 @synthesize lblRandomColor;
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -38,23 +34,26 @@
 	
 	[[self view] setBackgroundColor: [UIColor whiteColor]];
 	
-	[lblColorWithHex setBackgroundColor: [UIColor colorWithHex: 0xff0000]];
-	[lblColorWithHex setText: @"ColorWithHex : 0xFF0000"];
+	lblColorWithHex.backgroundColor = [UIColor colorWithHex: 0xff0000];
+	lblColorWithHex.text = @"ColorWithHex : 0xFF0000";
 	
-	[lblColorWithHexString setBackgroundColor: [UIColor colorWithHexString: @"#00ff00"]];
-	[lblColorWithHexString setText: @"ColorWithHexString : @\"#00FF00\""];
+	lblColorWithHexString.backgroundColor = [UIColor colorWithHexString: @"#00ff00"];
+	lblColorWithHexString.text = @"ColorWithHexString : @\"#00FF00\"";
 	
 	// The first 2 digit (88) is alpha
 	// (FF) for opaque and (00) for transparent
-	[lblColorWithAlphaHex setBackgroundColor: [UIColor colorWithAlphaHex: 0x880000ff]];
-	[lblColorWithAlphaHex setText: @"ColorWithAlphaHex : 0x880000FF"];
+	lblColorWithAlphaHex.backgroundColor = [UIColor colorWithAlphaHex: 0x880000ff];
+	lblColorWithAlphaHex.text = @"ColorWithAlphaHex : 0x880000FF";
 	
-	[lblColorWithAlphaHexString setBackgroundColor: [UIColor colorWithAlphaHexString: @"#88000000"]];
-	[lblColorWithAlphaHexString setText: @"ColorWithAlphaHexString : @\"#88000000\""];
+	lblColorWithAlphaHexString.backgroundColor = [UIColor colorWithAlphaHexString: @"#88000000"];
+	lblColorWithAlphaHexString.text = @"ColorWithAlphaHexString : @\"#88000000\"";
 	
 	UIColor *randomColor = [UIColor randomColor];
-	[lblRandomColor setBackgroundColor: randomColor];
-	[lblRandomColor setText: [@"Color (Random) : " stringByAppendingString: [UIColor hexStringFromColor: randomColor]]];
+	NSString *randomColorText = [UIColor hexStringFromColor: randomColor];
+	lblRandomColor.backgroundColor = randomColor;
+	lblRandomColor.text = [@"Color (Random) : " stringByAppendingString: randomColorText];
+	
+	lblRandomColor.text = [UIColor colorWithRGBToHex: [UIColor randomColor]];
 }
 
 - (void)viewDidUnload
