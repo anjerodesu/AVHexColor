@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>38BFDF76-99B3-4E65-9277-0BBEB92E3372</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ColorWithHex</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E5660388-A67D-42E4-A0A0-BE1E39C31368</key>
+		<string>ssh://github.com/anjerodesu/UIColor-ColorWithHex.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ColorWithHex.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E5660388-A67D-42E4-A0A0-BE1E39C31368</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/anjerodesu/UIColor-ColorWithHex.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E5660388-A67D-42E4-A0A0-BE1E39C31368</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E5660388-A67D-42E4-A0A0-BE1E39C31368</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ColorWithHex</string>
+		</dict>
+	</array>
+</dict>
+</plist>

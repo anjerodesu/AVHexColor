@@ -1,5 +1,5 @@
 //
-//  ColorWithHexViewController.h
+//  main.m
 //  ColorWithHex
 //
 //  Created by Angelo Villegas on 5/13/11.
@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ColorWithHexViewController : UIViewController
-
-@end
+int main(int argc, char *argv[])
+{
+	@autoreleasepool {
+		int retVal = UIApplicationMain(argc, argv, nil, nil);
+		return retVal;
+	}
+}

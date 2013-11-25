@@ -1,5 +1,5 @@
 //
-//  UIColor+ColorWithHex.m
+//  AVHexColor.m
 //  ColorWithHex
 //
 //  Created by Angelo Villegas on 3/24/11.
@@ -28,73 +28,79 @@
 //  OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "UIColor+ColorWithHex.h"
+#import "AVHexColor.h"
 
-
-@implementation UIColor (ColorWithHex)
+@implementation AVHexColor
 
 #pragma mark - Category Methods
-// Direct Conversion to hexadecimal (Automatic)
-+ (UIColor *)colorWithHex:(UInt32)hexadecimal
++ (AVColor *)colorWithHex:(UInt32)hexadecimal
 {
-	CGFloat red, green, blue;
+	CGFloat red, green, blue, alpha = 1.0f;
+	NSString *hexString = [NSString stringWithFormat: @"%lX" , (unsigned long)hexadecimal];
 	
-	// bitwise AND operation
-	// hexadecimal's first 2 values
-	red = ( hexadecimal >> 16 ) & 0xFF;
-	// hexadecimal's 2 middle values
-	green = ( hexadecimal >> 8 ) & 0xFF;
-	// hexadecimal's last 2 values
-	blue = hexadecimal & 0xFF;
-	
-	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
-	return color;
-}
-
-+ (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal
-{
-	CGFloat red, green, blue, alpha;
-	
-	// bitwise AND operation
-	// hexadecimal's first 2 values
-	alpha = ( hexadecimal >> 24 ) & 0xFF;
-	// hexadecimal's third and fourth values
-	red = ( hexadecimal >> 16 ) & 0xFF;
-	// hexadecimal's fifth and sixth values
-	green = ( hexadecimal >> 8 ) & 0xFF;
-	// hexadecimal's seventh and eighth
-	blue = hexadecimal & 0xFF;
-	
-	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
-    return color;
-}
-
-+ (UIColor *)colorWithHexString:(NSString *)hexadecimal
-{
-	// convert Objective-C NSString to C string
-	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
-	long int hex;
-	
-	// if the string contains hash tag (#) then remove
-	// hash tag and convert the C string to a base-16 int
-	if ( cString[0] == '#' )
+	if ( hexString.length == 3 )
 	{
-		hex = strtol(cString + 1, NULL, 16);
+		// bitwise AND operation
+		// hexadecimal's first 2 values
+		red = (CGFloat)(( hexadecimal >> 8 ) & 0xF ) / 15.0f;
+		// hexadecimal's third and fourth values
+		green = (CGFloat)(( hexadecimal >> 4 ) & 0xF ) / 15.0f;
+		// hexadecimal's fifth and sixth values
+		blue = (CGFloat)( hexadecimal & 0xF ) / 15.0f;
+	}
+	else if ( hexString.length == 4 )
+	{
+		// bitwise AND operation
+		// hexadecimal's first 2 values
+		alpha = (CGFloat)(( hexadecimal >> 12 ) & 0xF ) / 15.0f;
+		// hexadecimal's third and fourth values
+		red = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 15.0f;
+		// hexadecimal's fifth and sixth values
+		green = (CGFloat)(( hexadecimal >> 4 ) & 0xF ) / 15.0f;
+		// hexadecimal's seventh and eighth
+		blue = (CGFloat)( hexadecimal & 0xF ) / 15.0f;
+		
+	}
+	else if ( hexString.length == 6 )
+	{
+		// bitwise AND operation
+		// hexadecimal's first 2 values
+		red = (CGFloat)(( hexadecimal >> 16 ) & 0xFF ) / 255.0f;
+		// hexadecimal's third and fourth values
+		green = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 255.0f;
+		// hexadecimal's fifth and sixth values
+		blue = (CGFloat)( hexadecimal & 0xFF ) / 255.0f;
+		
+	}
+	else if ( hexString.length == 8 )
+	{
+		// bitwise AND operation
+		// hexadecimal's first 2 values
+		alpha = (CGFloat)(( hexadecimal >> 24 ) & 0xFF ) / 255.0f;
+		// hexadecimal's third and fourth values
+		red = (CGFloat)(( hexadecimal >> 16 ) & 0xFF ) / 255.0f;
+		// hexadecimal's fifth and sixth values
+		green = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 255.0f;
+		// hexadecimal's seventh and eighth
+		blue = (CGFloat)( hexadecimal & 0xFF ) / 255.0f;
 	}
 	else
 	{
-		hex = strtol(cString, NULL, 16);
+		return nil;
 	}
 	
-	UIColor *color = [self colorWithHex: hex];
+	UIColor *color = [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
 	return color;
 }
 
-+ (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal
++ (AVColor *)colorWithHexString:(NSString *)hexadecimal
 {
+	// convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
 	long long int hex;
 	
+	// if the string contains hash tag (#) then remove
+	// hash tag and convert the C string to a base-16 int
 	if ( cString[0] == '#' )
 	{
 		hex = strtoll( cString + 1 , NULL , 16 );
@@ -104,34 +110,28 @@
 		hex = strtoll( cString , NULL , 16 );
 	}
 	
-	UIColor *color = [self colorWithAlphaHex: hex];
+	UIColor *color = [self colorWithHex: hex];
 	return color;
 }
 
-// deprecated: Use 'hexStringFromColor:' instead.
-+ (NSString *)colorWithRGBToHex:(UIColor *)color
-{
-	// Get the color components of the color
-	const CGFloat *components = CGColorGetComponents( [color CGColor] );
-	// Multiply it by 255 and display the result using an uppercase hexadecimal specifier (%X) with a character length of 2
-	NSString *hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X" , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
-	
-	return hexadecimal;
-}
-// deprecated
-
-+ (NSString *)hexStringFromColor:(UIColor *)color
++ (NSString *)hexStringFromColor:(AVColor *)color
 {
 	NSString *string = [self hexStringFromColor: color hash: YES];
 	return string;
 }
 
-+ (NSString *)hexStringFromColor:(UIColor *)color hash:(BOOL)withHash
++ (NSString *)hexStringFromColor:(AVColor *)color hash:(BOOL)withHash
 {
 	// get the color components of the color
 	const NSUInteger totalComponents = CGColorGetNumberOfComponents( [color CGColor] );
 	const CGFloat *components = CGColorGetComponents( [color CGColor] );
 	NSString *hexadecimal = nil;
+	NSString *hash = @"";
+	
+	if ( withHash )
+	{
+		hash = @"#";
+	}
 	
 	// some cases, totalComponents will only have 2 components
 	// such as black, white, gray, etc..
@@ -140,11 +140,11 @@
 	switch ( totalComponents )
 	{
 		case 4 :
-			hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X" , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
+			hexadecimal = [NSString stringWithFormat: @"%@%02X%02X%02X" , hash , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
 			break;
 			
 		case 2 :
-			hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X" , (int)(255 * components[0]) , (int)(255 * components[0]) , (int)(255 * components[0])];
+			hexadecimal = [NSString stringWithFormat: @"%@%02X%02X%02X" , hash , (int)(255 * components[0]) , (int)(255 * components[0]) , (int)(255 * components[0])];
 			break;
 			
 		default:
@@ -161,16 +161,16 @@
 	return string;
 }
 
-+ (UIColor *)randomColor
++ (AVColor *)randomColor
 {
 	static BOOL generated = NO;
 	
-	// ff the randomColor hasn't been generated yet,
+	// if the randomColor hasn't been generated yet,
 	// reset the time to generate another sequence
 	if ( !generated )
 	{
 		generated = YES;
-		srandom( time( NULL ) );
+		srandom( (unsigned int)time( NULL ) );
 	}
 	
 	// generate a random number and divide it using the
@@ -183,287 +183,341 @@
 	return color;
 }
 
+#pragma mark - Dprecated Methods
+
+// deprecated: Use 'colorWithHex:' instead.
++ (AVColor *)colorWithAlphaHex:(UInt32)hexadecimal
+{
+	CGFloat red, green, blue, alpha;
+	
+	// bitwise AND operation
+	// hexadecimal's first 2 values
+	alpha = (CGFloat)(( hexadecimal & 0xFF000000 ) >> 24 );
+	// hexadecimal's first 2 values
+	red = (CGFloat)(( hexadecimal & 0x00FF0000 ) >> 16 );
+	// hexadecimal's 2 middle values
+	green = (CGFloat)(( hexadecimal & 0x0000FF00 ) >> 8 );
+	// hexadecimal's last 2 values
+	blue = (CGFloat)( hexadecimal & 0x000000FF );
+	
+	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
+    return color;
+}
+// deprecated
+
+// deprecated: Use 'colorWithHexString:' instead.
++ (AVColor *)colorWithAlphaHexString:(NSString *)hexadecimal
+{
+	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
+	long long int hex;
+	
+	if ( cString[0] == '#' )
+	{
+		hex = strtoll( cString + 1 , NULL , 16 );
+	}
+	else
+	{
+		hex = strtoll( cString , NULL , 16 );
+	}
+	
+	UIColor *color = [self colorWithAlphaHex: (unsigned int)hex];
+	return color;
+}
+// deprecated
+
+// deprecated: Use 'hexStringFromColor:' instead.
++ (NSString *)colorWithRGBToHex:(AVColor *)color
+{
+	// Get the color components of the color
+	const CGFloat *components = CGColorGetComponents( [color CGColor] );
+	// Multiply it by 255 and display the result using an uppercase hexadecimal specifier (%X) with a character length of 2
+	NSString *hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X" , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
+	
+	return hexadecimal;
+}
+// deprecated
+
 #pragma mark - Convenience Methods
-+ (UIColor *)oliveColor
++ (AVColor *)oliveColor
 {
 	return [self colorWithHex: 0x808000];
 }
 
-+ (UIColor *)azureColor
++ (AVColor *)azureColor
 {
 	return [self colorWithHex: 0xF0FFFF];
 }
 
-+ (UIColor *)orchidColor
++ (AVColor *)orchidColor
 {
 	return [self colorWithHex: 0xDA70D6];
 }
 
-+ (UIColor *)thistleColor
++ (AVColor *)thistleColor
 {
 	return [self colorWithHex: 0xD8BFD8];
 }
 
-+ (UIColor *)beigeColor
++ (AVColor *)beigeColor
 {
 	return [self colorWithHex: 0xF5F5DC];
 }
 
-+ (UIColor *)bananaColor
++ (AVColor *)bananaColor
 {
 	return [self colorWithHex: 0xE3CF57];
 }
 
-+ (UIColor *)plumColor
++ (AVColor *)plumColor
 {
 	return [self colorWithHex: 0xDDA0DD];
 }
 
-+ (UIColor *)brickColor
++ (AVColor *)brickColor
 {
 	return [self colorWithHex: 0x9C661F];
 }
 
-+ (UIColor *)fireBrickColor
++ (AVColor *)fireBrickColor
 {
 	return [self colorWithHex: 0xB22222];
 }
 
-+ (UIColor *)skyBlueColor
++ (AVColor *)skyBlueColor
 {
 	return [self colorWithHex: 0x87CEEB];
 }
 
-+ (UIColor *)khakiColor
++ (AVColor *)khakiColor
 {
 	return [self colorWithHex: 0xF0E68C];
 }
 
-+ (UIColor *)wheatColor
++ (AVColor *)wheatColor
 {
 	return [self colorWithHex: 0xF5DEB3];
 }
 
-+ (UIColor *)burlywoodColor
++ (AVColor *)burlywoodColor
 {
 	return [self colorWithHex: 0xDEB887];
 }
 
-+ (UIColor *)cadetBlueColor
++ (AVColor *)cadetBlueColor
 {
 	return [self colorWithHex: 0x5F9EA0];
 }
 
-+ (UIColor *)carrotColor
++ (AVColor *)carrotColor
 {
 	return [self colorWithHex: 0xED9121];
 }
 
-+ (UIColor *)indigoColor
++ (AVColor *)indigoColor
 {
 	return [self colorWithHex: 0x4B0082];
 }
 
-+ (UIColor *)maroonColor
++ (AVColor *)maroonColor
 {
 	return [self colorWithHex: 0x800000];
 }
 
-+ (UIColor *)ceruleanColor
++ (AVColor *)ceruleanColor
 {
 	return [self colorWithHex: 0x007BA7];
 }
 
-+ (UIColor *)moccasinColor
++ (AVColor *)moccasinColor
 {
 	return [self colorWithHex: 0xFFE4B5];
 }
 
-+ (UIColor *)tanColor
++ (AVColor *)tanColor
 {
 	return [self colorWithHex: 0xD2B48C];
 }
 
-+ (UIColor *)melonColor
++ (AVColor *)melonColor
 {
 	return [self colorWithHex: 0xE3A869];
 }
 
-+ (UIColor *)cobaltColor
++ (AVColor *)cobaltColor
 {
 	return [self colorWithHex: 0x3D59AB];
 }
 
-+ (UIColor *)crimsonColor
++ (AVColor *)crimsonColor
 {
 	return [self colorWithHex: 0xDC143C];
 }
 
-+ (UIColor *)mistyRoseColor
++ (AVColor *)mistyRoseColor
 {
 	return [self colorWithHex: 0xFFE4E1];
 }
 
-+ (UIColor *)pinkColor
++ (AVColor *)pinkColor
 {
 	return [self colorWithHex: 0xFFC0CB];
 }
 
-+ (UIColor *)irisColor
++ (AVColor *)irisColor
 {
 	return [self colorWithHex: 0x5A4FCF];
 }
 
-+ (UIColor *)chartreuseColor
++ (AVColor *)chartreuseColor
 {
 	return [self colorWithHex: 0x7FFF00];
 }
 
-+ (UIColor *)navyColor
++ (AVColor *)navyColor
 {
 	return [self colorWithHex: 0x000080];
 }
 
-+ (UIColor *)mintColor
++ (AVColor *)mintColor
 {
 	return [self colorWithHex: 0xBDFCC9];
 }
 
-+ (UIColor *)tealColor
++ (AVColor *)tealColor
 {
 	return [self colorWithHex: 0x008080];
 }
 
-+ (UIColor *)violetColor
++ (AVColor *)violetColor
 {
 	return [self colorWithHex: 0xEE82EE];
 }
 
-+ (UIColor *)limeColor
++ (AVColor *)limeColor
 {
 	return [self colorWithHex: 0x32CD32];
 }
 
-// Alloy Colors
-+ (UIColor *)bronzeColor
+#pragma mark Alloy Colors
++ (AVColor *)bronzeColor
 {
 	return [self colorWithHex: 0xCD7F32];
 }
 
-+ (UIColor *)goldColor
++ (AVColor *)goldColor
 {
 	return [self colorWithHex: 0xFFD700];
 }
 
-+ (UIColor *)silverColor
++ (AVColor *)silverColor
 {
 	return [self colorWithHex: 0xC0C0C0];
 }
 
-// Gem Colors
-+ (UIColor *)emeraldColor
+#pragma mark Gem Colors
++ (AVColor *)emeraldColor
 {
 	return [self colorWithHex: 0x50C878];
 }
 
-+ (UIColor *)rubyColor
++ (AVColor *)rubyColor
 {
 	return [self colorWithHex: 0xE0115F];
 }
 
-+ (UIColor *)sapphireColor
++ (AVColor *)sapphireColor
 {
 	return [self colorWithHex: 0x082567];
 }
 
-+ (UIColor *)aquamarineColor
++ (AVColor *)aquamarineColor
 {
 	return [self colorWithHex: 0x7FFFD4];
 }
 
-+ (UIColor *)turquoiseColor
++ (AVColor *)turquoiseColor
 {
 	return [self colorWithHex: 0x40E0D0];
 }
 
-// Dark Colors
-+ (UIColor *)darkRedColor
+#pragma mark Dark Colors
++ (AVColor *)darkRedColor
 {
 	return [self colorWithHex: 0x8B0000];
 }
 
-+ (UIColor *)darkGreenColor
++ (AVColor *)darkGreenColor
 {
 	return [self colorWithHex: 0x006400];
 }
 
-+ (UIColor *)darkBlueColor
++ (AVColor *)darkBlueColor
 {
 	return [self colorWithHex: 0x00008B];
 }
 
-+ (UIColor *)darkCyanColor
++ (AVColor *)darkCyanColor
 {
 	return [self colorWithHex: 0x008B8B];
 }
 
-+ (UIColor *)darkYellowColor
++ (AVColor *)darkYellowColor
 {
 	return [self colorWithHex: 0xB5A42E];
 }
 
-+ (UIColor *)darkMagentaColor
++ (AVColor *)darkMagentaColor
 {
 	return [self colorWithHex: 0x8B008B];
 }
 
-+ (UIColor *)darkOrangeColor
++ (AVColor *)darkOrangeColor
 {
 	return [self colorWithHex: 0xFF8C00];
 }
 
-+ (UIColor *)darkVioletColor
++ (AVColor *)darkVioletColor
 {
 	return [self colorWithHex: 0x9400D3];
 }
 
-// Light Colors
-+ (UIColor *)lightRedColor
+#pragma mark Light Colors
++ (AVColor *)lightRedColor
 {
 	return [self colorWithHex: 0xF26C4F];
 }
 
-+ (UIColor *)lightGreenColor
++ (AVColor *)lightGreenColor
 {
 	return [self colorWithHex: 0x90EE90];
 }
 
-+ (UIColor *)lightBlueColor
++ (AVColor *)lightBlueColor
 {
 	return [self colorWithHex: 0xADD8E6];
 }
 
-+ (UIColor *)lightCyanColor
++ (AVColor *)lightCyanColor
 {
 	return [self colorWithHex: 0xE0FFFF];
 }
 
-+ (UIColor *)lightYellowColor
++ (AVColor *)lightYellowColor
 {
 	return [self colorWithHex: 0xFFFFE0];
 }
 
-+ (UIColor *)lightMagentaColor
++ (AVColor *)lightMagentaColor
 {
 	return [self colorWithHex: 0xFF77FF];
 }
 
-+ (UIColor *)lightOrangeColor
++ (AVColor *)lightOrangeColor
 {
 	return [self colorWithHex: 0xE7B98A];
 }
 
-+ (UIColor *)lightVioletColor
++ (AVColor *)lightVioletColor
 {
 	return [self colorWithHex: 0xB98AE7];
 }
@@ -471,7 +525,7 @@
 #pragma mark -
 // you can delete this method. It only shows how to calculate and convert RGB color to Hexadecimal manually
 // converting using Hex to RGB formula (Manual)
-+ (UIColor *)colorWithHexa:(NSString *)hexadecimal
++ (AVColor *)colorWithHexa:(NSString *)hexadecimal
 {
 	// make sure that the hexadecimal value is in uppercase letters
 	hexadecimal = [hexadecimal uppercaseString];
@@ -538,19 +592,19 @@
 		{
 			case 0 :
 			{
-				const int value = [hexConverted[x] integerValue];
+				const int value = [hexConverted[x] intValue];
 				red = value * 16 + [hexConverted[x + 1] integerValue];
 				break;
 			}
 			case 2 :
 			{
-				const int value = [hexConverted[x] integerValue];
+				const int value = [hexConverted[x] intValue];
 				green = value * 16 + [hexConverted[x + 1] integerValue];
 				break;
 			}
 			case 4 :
 			{
-				const int value = [hexConverted[x] integerValue];
+				const int value = [hexConverted[x] intValue];
 				blue = value * 16 + [hexConverted[x + 1] integerValue];
 				break;
 			}
