@@ -1,20 +1,19 @@
-AVColorHex
+AVHexColor
 ===============================
-`AVColorHex` was inspired by the lack of hexadecimal colour integration of iOS.
+`AVHexColor` was inspired by the lack of hexadecimal colour integration of iOS.
+
+Supports both platform (OS X & iOS)
 
 Methods
 -------------------------------
-+ + (UIColor *)colorWithHex:(UInt32)hexadecimal;
-+ + (UIColor *)colorWithHexString:(NSString *)hexadecimal;
-+ + (UIColor *)colorWithAlphaHex:(UInt32)hexadecimal;
-+ + (UIColor *)colorWithAlphaHexString:(NSString *)hexadecimal;
-+ + (NSString *)hexStringFromColor: (UIColor *)color;
-+ + (UIColor *)randomColor;
-+ + (UIColor *)colorWithHexa:(NSString *)hexadecimal;
++ + (AVColor *)colorWithHex:(UInt32)hexadecimal;
++ + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
+
+And a lot of convenience methods...
 
 Install
 -------------------------------
-Just copy the `AVColorHex.h` and `AVColorHex.m` files to your project and #import the header file (AVColorHex.h)
+Just copy the `AVHexColor.h` and `AVHexColor.m` files to your project and `#import` the ***header file*** (`AVHexColor.h`) to your project
 
 License
 -------------------------------
