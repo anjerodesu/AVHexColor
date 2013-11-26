@@ -1,5 +1,7 @@
 AVHexColor
 ===============================
+[![Build Status](https://travis-ci.org/anjerodesu/AVHexColor.png?branch=master)](https://travis-ci.org/anjerodesu/AVHexColor)
+
 `AVHexColor` was inspired by the lack of hexadecimal colour integration of iOS.
 
 Supports both platform (OS X & iOS)

@@ -30,7 +30,7 @@
 
 #import <Foundation/Foundation.h>
 
-#if ( TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE )
+#if TARGET_OS_IPHONE
 #define AVColor UIColor
 #else
 #define AVColor NSColor

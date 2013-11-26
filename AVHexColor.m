@@ -89,7 +89,7 @@
 		return nil;
 	}
 	
-	UIColor *color = [UIColor colorWithRed: red green: green blue: blue alpha: alpha];
+	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: alpha];
 	return color;
 }
 
@@ -110,7 +110,7 @@
 		hex = strtoll( cString , NULL , 16 );
 	}
 	
-	UIColor *color = [self colorWithHex: hex];
+	AVColor *color = [self colorWithHex: (UInt32)hex];
 	return color;
 }
 
@@ -156,7 +156,7 @@
 
 + (NSString *)hexStringWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
-	UIColor *color = [UIColor colorWithRed: red green: green blue: blue alpha: 1.0f];
+	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: 1.0f];
 	NSString *string = [self hexStringFromColor: color];
 	return string;
 }
@@ -179,7 +179,7 @@
 	CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
 	
-	UIColor *color = [UIColor colorWithRed: red green: green blue: blue alpha: 1.0f];
+	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: 1.0f];
 	return color;
 }
 
@@ -200,7 +200,7 @@
 	// hexadecimal's last 2 values
 	blue = (CGFloat)( hexadecimal & 0x000000FF );
 	
-	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
+	AVColor *color = [AVColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
     return color;
 }
 // deprecated
@@ -220,7 +220,7 @@
 		hex = strtoll( cString , NULL , 16 );
 	}
 	
-	UIColor *color = [self colorWithAlphaHex: (unsigned int)hex];
+	AVColor *color = [self colorWithAlphaHex: (unsigned int)hex];
 	return color;
 }
 // deprecated
@@ -613,7 +613,7 @@
 		}
 	}
 	
-	UIColor *color = [UIColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
+	AVColor *color = [AVColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: 1.0f];
 	return color;
 }
 

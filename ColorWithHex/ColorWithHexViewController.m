@@ -51,7 +51,7 @@
 	_label4.backgroundColor = [AVHexColor colorWithHexString: @"#88ff66cc"];
 	_label4.text = [AVHexColor hexStringFromColor: _label4.backgroundColor];
 	
-	UIColor *randomColor = [AVHexColor randomColor];
+	AVColor *randomColor = [AVHexColor randomColor];
 	NSString *randomColorText = [AVHexColor hexStringFromColor: randomColor];
 	_labelRandomColor.backgroundColor = randomColor;
 	_labelRandomColor.text = randomColorText;
