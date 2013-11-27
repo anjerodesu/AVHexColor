@@ -8,8 +8,8 @@ AVHexColor
 
 Methods
 -------------------------------
- + (AVColor *)colorWithHex:(UInt32)hexadecimal;
- + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
++ + (AVColor *)colorWithHex:(UInt32)hexadecimal;
++ + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
 
 And a lot of convenience methods...
 
