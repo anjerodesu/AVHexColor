@@ -29,9 +29,9 @@ pod 'AVHexColor', '~> 1.1.0'
 ### Alternatives
 
 1. Using git subtree
-	- `git subtree add --prefix=AVPickerDimView --squash git@github.com:anjerodesu/AVPickerDimView.git master`
+	- `git subtree add --prefix=AVPickerDimView --squash https://github.com/anjerodesu/AVHexColor.git master`
 2. Using git submodule
-	- `git submodule add git@github.com:anjerodesu/AVPickerDimView.git AVPickerDimView`
+	- `git submodule add https://github.com/anjerodesu/AVHexColor.git AVHexColor`
 3. [Download](https://github.com/anjerodesu/AVHexColor/archive/master.zip "Download Zip")
 	- Copy the `AVHexColor.h` and `AVHexColor.m` files and `#import` the *header file* (`AVHexColor.h`) to your project
 
