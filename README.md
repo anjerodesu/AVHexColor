@@ -29,7 +29,7 @@ pod 'AVHexColor', '~> 1.1.0'
 ### Alternatives
 
 1. Using git subtree
-	- `git subtree add --prefix=AVPickerDimView --squash https://github.com/anjerodesu/AVHexColor.git master`
+	- `git subtree add --prefix=AVHexColor --squash https://github.com/anjerodesu/AVHexColor.git master`
 2. Using git submodule
 	- `git submodule add https://github.com/anjerodesu/AVHexColor.git AVHexColor`
 3. [Download](https://github.com/anjerodesu/AVHexColor/archive/master.zip "Download Zip")
@@ -37,4 +37,4 @@ pod 'AVHexColor', '~> 1.1.0'
 
 License
 -------------------------------
-ColorWithHex is available under the MIT license. See the [LICENSE](https://github.com/anjerodesu/AVColorWithHex/blob/master/LICENCE "License File") file for more info.we
+ColorWithHex is available under the MIT license. See the [LICENSE](https://github.com/anjerodesu/AVColorWithHex/blob/master/LICENCE "License File") file for more info.
