@@ -88,9 +88,9 @@
     CGFloat red, green, blue;
     STAssertTrue([color getRed:&red green:&green blue:&blue alpha:nil], @"Color components should be readable.");
 
-    STAssertEquals(red, (CGFloat)1, @"Red component should be at lowest intensity.");
-    STAssertEquals(green, (CGFloat)1, @"Green component should be at lowest intensity.");
-    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at lowest intensity.");
+    STAssertEquals(red, (CGFloat)1, @"Red component should be at highest intensity.");
+    STAssertEquals(green, (CGFloat)1, @"Green component should be at highest intensity.");
+    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at highest intensity.");
 }
 
 - (void)testWhiteRGBAFourDigitString
@@ -101,9 +101,9 @@
     CGFloat red, green, blue, alpha;
     STAssertTrue([color getRed:&red green:&green blue:&blue alpha:&alpha], @"Color components should be readable.");
 
-    STAssertEquals(red, (CGFloat)1, @"Red component should be at lowest intensity.");
-    STAssertEquals(green, (CGFloat)1, @"Green component should be at lowest intensity.");
-    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at lowest intensity.");
+    STAssertEquals(red, (CGFloat)1, @"Red component should be at highest intensity.");
+    STAssertEquals(green, (CGFloat)1, @"Green component should be at highest intensity.");
+    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at highest intensity.");
     STAssertEquals(alpha, (CGFloat)1, @"Alpha component should be at highest intensity.");
 }
 
@@ -115,9 +115,9 @@
     CGFloat red, green, blue;
     STAssertTrue([color getRed:&red green:&green blue:&blue alpha:nil], @"Color components should be readable.");
 
-    STAssertEquals(red, (CGFloat)1, @"Red component should be at lowest intensity.");
-    STAssertEquals(green, (CGFloat)1, @"Green component should be at lowest intensity.");
-    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at lowest intensity.");
+    STAssertEquals(red, (CGFloat)1, @"Red component should be at highest intensity.");
+    STAssertEquals(green, (CGFloat)1, @"Green component should be at highest intensity.");
+    STAssertEquals(blue, (CGFloat)1, @"Blue component should be at highest intensity.");
 }
 
 - (void)testWhiteRGBAEightString
