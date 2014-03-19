@@ -137,7 +137,13 @@
 - (void)testInvalidStringYieldNilColor
 {
     UIColor *color = [AVHexColor colorWithHexString:@"#HEYTHISISNOTACOLOR"];
-    STAssertNil(color, @"Color should not be nil.");
+    STAssertNil(color, @"Color should be nil.");
+}
+
+- (void)testLongStringsYieldNilColor
+{
+    UIColor *color = [AVHexColor colorWithHexString:@"#000000000"];  // 9 zeros
+    STAssertNil(color, @"Color should be nil.");
 }
 
 @end

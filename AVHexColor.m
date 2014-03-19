@@ -108,6 +108,7 @@
 		char ch = *charPtr;
 		BOOL isHexDigit = (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
 		if (! isHexDigit) return nil;
+        if (charPtr - cString > 8) return nil; // AARRGGBB is largest string we accept.
 	}
 
 	// Make canonical hex string
