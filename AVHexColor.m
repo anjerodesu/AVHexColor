@@ -97,20 +97,53 @@
 {
 	// convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
-	long long int hex;
-	
-	// if the string contains hash tag (#) then remove
-	// hash tag and convert the C string to a base-16 int
-	if ( cString[0] == '#' )
-	{
-		hex = strtoll( cString + 1 , NULL , 16 );
+
+	// Strip optional #
+	if (cString[0] == '#') {
+		cString++;
 	}
-	else
-	{
-		hex = strtoll( cString , NULL , 16 );
+
+	// Validate is hex string
+	for (const char *charPtr = cString; *charPtr != 0; ++charPtr) {
+		char ch = *charPtr;
+		BOOL isHexDigit = (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
+		if (! isHexDigit) return nil;
 	}
-	
-	AVColor *color = [self colorWithHex: (UInt32)hex];
+
+	// Make canonical hex string
+	char canonicalARGB[8+1];  // null terminated
+	canonicalARGB[8] = 0;
+	switch (strlen(cString)) {
+		case 3:
+			canonicalARGB[0] = canonicalARGB[1] = 'F';  // Alpha
+			for (int i = 0; i < 6; ++i) {
+				canonicalARGB[i+2] = cString[i / 2];
+			}
+			break;
+		case 4:
+			for (int i = 0; i < 8; ++i) {
+				canonicalARGB[i] = cString[i / 2];
+			}
+			break;
+		case 6:
+			canonicalARGB[0] = canonicalARGB[1] = 'F';  // Alpha
+			strcpy( canonicalARGB + 2, cString);
+			break;
+		case 8:
+			strcpy( canonicalARGB, cString);
+			break;
+		default:
+			return nil;
+	}
+
+	long long int hex = strtoll(canonicalARGB, NULL , 16 );
+
+	CGFloat alpha = (CGFloat)((hex & 0xFF000000) >> 24) / 255.f;
+	CGFloat red = (CGFloat)((hex & 0x00FF0000) >> 16) / 255.f;
+	CGFloat green = (CGFloat)((hex & 0x0000FF00) >> 8) / 255.f;
+	CGFloat blue = (CGFloat)((hex & 0x000000FF) >> 0) / 255.f;
+
+	AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:alpha];
 	return color;
 }
 
