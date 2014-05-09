@@ -1,10 +1,10 @@
 AVHexColor
 ===============================
 [![Build Status](https://travis-ci.org/anjerodesu/AVHexColor.png?branch=master)](https://travis-ci.org/anjerodesu/AVHexColor)
+![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/HexColors/1.1.0/badge.png)  
+![ios/osx](https://cocoapod-badges.herokuapp.com/p/HexColors/badge.png)
 
 `AVHexColor` was inspired by the lack of hexadecimal colour integration of iOS.
-
-Supports both platform (OS X & iOS)
 
 Methods
 -------------------------------
@@ -15,7 +15,25 @@ And a lot of convenience methods...
 
 Install
 -------------------------------
-Just copy the `AVHexColor.h` and `AVHexColor.m` files to your project and `#import` the ***header file*** (`AVHexColor.h`) to your project
+### Recommended
+
+#### Podfile
+
+via [CocoaPods](http://cocoapods.org)
+
+```ruby
+platform :ios
+pod 'AVHexColor', '~> 1.1.0'
+```
+
+### Alternatives
+
+1. Using git subtree
+	- `git subtree add --prefix=AVHexColor --squash https://github.com/anjerodesu/AVHexColor.git master`
+2. Using git submodule
+	- `git submodule add https://github.com/anjerodesu/AVHexColor.git AVHexColor`
+3. [Download](https://github.com/anjerodesu/AVHexColor/archive/master.zip "Download Zip")
+	- Copy the `AVHexColor.h` and `AVHexColor.m` files and `#import` the *header file* (`AVHexColor.h`) to your project
 
 License
 -------------------------------
