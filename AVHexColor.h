@@ -30,6 +30,9 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+
 #if TARGET_OS_IPHONE
 #define AVColor UIColor
 #else
@@ -42,12 +45,24 @@
  * Convert hexadecimal value to RGB
  *
  * Accepts several hex length:
+ * 		1 = 0xB
+ * 		2 = 0xGB
  *		3 = 0xRGB
  *		4 = 0xaRGB
  *		6 = 0xRRGGBB
  *		8 = 0xaaRRGGBB
  */
 + (AVColor *)colorWithHex:(UInt32)hexadecimal;
+
+/*
+ * Convert string hex value to RGB
+ *
+ * Accepts several hex length:
+ *		3 = #RGB
+ *		4 = #aRGB
+ *		6 = #RRGGBB
+ *		8 = #aaRRGGBB
+ */
 + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
 
 /*
@@ -62,7 +77,7 @@
 // Return the hexadecimal value of the RGB color specified.
 + (NSString *)colorWithRGBToHex:(AVColor *)color __attribute__((deprecated("Use 'hexStringFromColor:' instead.")));
 + (NSString *)hexStringFromColor:(AVColor *)color;
-+ (NSString *)hexStringFromColor:(AVColor *)color hash:(BOOL)withHash;
++ (NSString *)hexStringFromColor:(AVColor *)color withHash:(BOOL)withHash;
 + (NSString *)hexStringWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 
 // Generates a color randomly
@@ -134,3 +149,4 @@
 + (AVColor *)colorWithHexa:(NSString *)hexadecimal;
 
 @end
+#pragma clang diagnostic pop

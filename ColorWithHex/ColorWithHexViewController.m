@@ -34,37 +34,50 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+	[self testExecTime];
 	
 	self.view.backgroundColor = [AVHexColor wheatColor];
 	
-	_label1.backgroundColor = [AVHexColor colorWithHex: 0xf6c];
-	_label1.text = [AVHexColor hexStringFromColor: _label1.backgroundColor];
+	_label1.backgroundColor = [AVHexColor colorWithHex: 0xF00];
+	_label1.text = [NSString stringWithFormat: @"label1: %@", [AVHexColor hexStringFromColor: _label1.backgroundColor]];
 	
 	_label2.backgroundColor = [AVHexColor colorWithHexString: @"#8f6c"];
-	_label2.text = [AVHexColor hexStringFromColor: _label2.backgroundColor];
+	_label2.text = [NSString stringWithFormat: @"label2: %@", [AVHexColor hexStringFromColor: _label2.backgroundColor]];
 	
-	// The first 2 digit (88) is alpha
-	// (FF) for opaque and (00) for transparent
-	_label3.backgroundColor = [AVHexColor colorWithHex: 0xff66cc];
-	_label3.text = [AVHexColor hexStringFromColor: _label3.backgroundColor];
+	_label3.backgroundColor = [AVHexColor colorWithHex: 0x80F6];
+	_label3.text = [NSString stringWithFormat: @"label3: %@", [AVHexColor hexStringFromColor: _label3.backgroundColor]];
 	
-	_label4.backgroundColor = [AVHexColor colorWithHexString: @"#88ff66cc"];
-	_label4.text = [AVHexColor hexStringFromColor: _label4.backgroundColor];
+	_label4.backgroundColor = [AVHexColor colorWithHexString: @"#8FCCBBAA"];
+	_label4.text = [NSString stringWithFormat: @"label4: %@", [AVHexColor hexStringFromColor: _label4.backgroundColor]];
 	
 	AVColor *randomColor = [AVHexColor randomColor];
 	NSString *randomColorText = [AVHexColor hexStringFromColor: randomColor];
 	_labelRandomColor.backgroundColor = randomColor;
 	_labelRandomColor.text = randomColorText;
-	
-	// Deprecated method
-	// lblRandomColor.text = [UIColor colorWithRGBToHex: [UIColor randomColor]];
 }
 
-- (void)viewDidUnload
+- (void)testExecTime
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	NSDate *start = [NSDate date];
+	[AVHexColor colorWithHex: 0xf6c];
+	NSTimeInterval timeInterval = [start timeIntervalSinceNow];
+	NSLog(@"%s [Line %d] timeInterval 0xf6c: %f", __FUNCTION__, __LINE__, timeInterval);
+	
+	NSDate *start1 = [NSDate date];
+	[AVHexColor colorWithHexString: @"#8f6c"];
+	NSTimeInterval timeInterval1 = [start1 timeIntervalSinceNow];
+	NSLog(@"%s [Line %d] timeInterval @\"#8f6c\": %f", __FUNCTION__, __LINE__, timeInterval1);
+	
+	NSDate *start2 = [NSDate date];
+	[AVHexColor colorWithHex: 0xff66cc];
+	NSTimeInterval timeInterval2 = [start2 timeIntervalSinceNow];
+	NSLog(@"%s [Line %d] timeInterval 0xff66cc: %f", __FUNCTION__, __LINE__, timeInterval2);
+	
+	NSDate *start3 = [NSDate date];
+	[AVHexColor colorWithHexString: @"#88ff66cc"];
+	NSTimeInterval timeInterval3 = [start3 timeIntervalSinceNow];
+	NSLog(@"%s [Line %d] timeInterval @\"#88ff66cc\": %f", __FUNCTION__, __LINE__, timeInterval3);
 }
 
 @end

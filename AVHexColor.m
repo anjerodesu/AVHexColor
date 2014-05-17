@@ -30,13 +30,15 @@
 
 #import "AVHexColor.h"
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMethodInspection"
 @implementation AVHexColor
 
 #pragma mark - Category Methods
 + (AVColor *)colorWithHex:(UInt32)hexadecimal
 {
 	CGFloat red, green, blue, alpha = 1.0f;
-	NSString *hexString = [NSString stringWithFormat: @"%lX" , (unsigned long)hexadecimal];
+	NSString *hexString = [NSString stringWithFormat: @"%03X" , (unsigned int)hexadecimal];
 	
 	if ( hexString.length == 3 )
 	{
@@ -54,12 +56,11 @@
 		// hexadecimal's first 2 values
 		alpha = (CGFloat)(( hexadecimal >> 12 ) & 0xF ) / 15.0f;
 		// hexadecimal's third and fourth values
-		red = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 15.0f;
+		red = (CGFloat)(( hexadecimal >> 8 ) & 0xF ) / 15.0f;
 		// hexadecimal's fifth and sixth values
 		green = (CGFloat)(( hexadecimal >> 4 ) & 0xF ) / 15.0f;
 		// hexadecimal's seventh and eighth
 		blue = (CGFloat)( hexadecimal & 0xF ) / 15.0f;
-		
 	}
 	else if ( hexString.length == 6 )
 	{
@@ -70,7 +71,6 @@
 		green = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 255.0f;
 		// hexadecimal's fifth and sixth values
 		blue = (CGFloat)( hexadecimal & 0xFF ) / 255.0f;
-		
 	}
 	else if ( hexString.length == 8 )
 	{
@@ -89,84 +89,82 @@
 		return nil;
 	}
 	
-	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: alpha];
+	AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:alpha];
 	return color;
 }
 
 + (AVColor *)colorWithHexString:(NSString *)hexadecimal
 {
+	
 	// convert Objective-C NSString to C string
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
-
+	
 	// Strip optional #
-	if (cString[0] == '#') {
-		cString++;
-	}
-
+	if (cString[0] == '#') cString++;
+	
 	// Validate is hex string
-	for (const char *charPtr = cString; *charPtr != 0; ++charPtr) {
+	for (const char *charPtr = cString; *charPtr != 0; charPtr++)
+	{
 		char ch = *charPtr;
 		BOOL isHexDigit = (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
-		if (! isHexDigit) return nil;
-        if (charPtr - cString > 8) return nil; // AARRGGBB is largest string we accept.
+		if ( !isHexDigit ) return nil;
+        if ( charPtr - cString > 8 ) return nil; // aaRRGGBB is largest string we accept.
 	}
-
+	
 	// Make canonical hex string
-	char canonicalARGB[8+1];  // null terminated
+	char canonicalARGB[8 + 1];  // null terminated
 	canonicalARGB[8] = 0;
-	switch (strlen(cString)) {
+	switch (strlen(cString))
+	{
 		case 3:
-			canonicalARGB[0] = canonicalARGB[1] = 'F';  // Alpha
-			for (int i = 0; i < 6; ++i) {
-				canonicalARGB[i+2] = cString[i / 2];
+			canonicalARGB[0] = canonicalARGB[1] = 'F'; // Alpha
+			for (int i = 0; i < 6; i++)
+			{
+				canonicalARGB[i + 2] = cString[i / 2];
 			}
 			break;
 		case 4:
-			for (int i = 0; i < 8; ++i) {
+			for (int i = 0; i < 8; i++)
+			{
 				canonicalARGB[i] = cString[i / 2];
 			}
 			break;
 		case 6:
-			canonicalARGB[0] = canonicalARGB[1] = 'F';  // Alpha
-			strcpy( canonicalARGB + 2, cString);
+			canonicalARGB[0] = canonicalARGB[1] = 'F'; // Alpha
+			strcpy(canonicalARGB + 2, cString);
 			break;
 		case 8:
-			strcpy( canonicalARGB, cString);
+			strcpy(canonicalARGB, cString);
 			break;
 		default:
 			return nil;
 	}
-
+	
 	long long int hex = strtoll(canonicalARGB, NULL , 16 );
-
+	
 	CGFloat alpha = (CGFloat)((hex & 0xFF000000) >> 24) / 255.f;
 	CGFloat red = (CGFloat)((hex & 0x00FF0000) >> 16) / 255.f;
 	CGFloat green = (CGFloat)((hex & 0x0000FF00) >> 8) / 255.f;
 	CGFloat blue = (CGFloat)((hex & 0x000000FF) >> 0) / 255.f;
-
+	
 	AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:alpha];
 	return color;
 }
 
 + (NSString *)hexStringFromColor:(AVColor *)color
 {
-	NSString *string = [self hexStringFromColor: color hash: YES];
+	NSString *string = [self hexStringFromColor: color withHash: YES];
 	return string;
 }
 
-+ (NSString *)hexStringFromColor:(AVColor *)color hash:(BOOL)withHash
++ (NSString *)hexStringFromColor:(AVColor *)color withHash:(BOOL)withHash
 {
 	// get the color components of the color
 	const NSUInteger totalComponents = CGColorGetNumberOfComponents( [color CGColor] );
 	const CGFloat *components = CGColorGetComponents( [color CGColor] );
 	NSString *hexadecimal = nil;
-	NSString *hash = @"";
-	
-	if ( withHash )
-	{
-		hash = @"#";
-	}
-	
+	NSString *hash = withHash? @"#" : @"";
+
 	// some cases, totalComponents will only have 2 components
 	// such as black, white, gray, etc..
 	// multiply it by 255 and display the result using an uppercase
@@ -176,15 +174,15 @@
 		case 4 :
 			hexadecimal = [NSString stringWithFormat: @"%@%02X%02X%02X" , hash , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
 			break;
-			
+
 		case 2 :
 			hexadecimal = [NSString stringWithFormat: @"%@%02X%02X%02X" , hash , (int)(255 * components[0]) , (int)(255 * components[0]) , (int)(255 * components[0])];
 			break;
-			
+
 		default:
 			break;
 	}
-	
+
 	return hexadecimal;
 }
 
@@ -198,7 +196,7 @@
 + (AVColor *)randomColor
 {
 	static BOOL generated = NO;
-	
+
 	// if the randomColor hasn't been generated yet,
 	// reset the time to generate another sequence
 	if ( !generated )
@@ -206,24 +204,24 @@
 		generated = YES;
 		srandom( (unsigned int)time( NULL ) );
 	}
-	
+
 	// generate a random number and divide it using the
 	// maximum possible number random() can be generated
 	CGFloat red = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
-	
+
 	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: 1.0f];
 	return color;
 }
 
-#pragma mark - Dprecated Methods
+#pragma mark - Deprecated Methods
 
 // deprecated: Use 'colorWithHex:' instead.
 + (AVColor *)colorWithAlphaHex:(UInt32)hexadecimal
 {
 	CGFloat red, green, blue, alpha;
-	
+
 	// bitwise AND operation
 	// hexadecimal's first 2 values
 	alpha = (CGFloat)(( hexadecimal & 0xFF000000 ) >> 24 );
@@ -233,7 +231,7 @@
 	green = (CGFloat)(( hexadecimal & 0x0000FF00 ) >> 8 );
 	// hexadecimal's last 2 values
 	blue = (CGFloat)( hexadecimal & 0x000000FF );
-	
+
 	AVColor *color = [AVColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
     return color;
 }
@@ -244,7 +242,7 @@
 {
 	const char *cString = [hexadecimal cStringUsingEncoding: NSASCIIStringEncoding];
 	long long int hex;
-	
+
 	if ( cString[0] == '#' )
 	{
 		hex = strtoll( cString + 1 , NULL , 16 );
@@ -253,8 +251,11 @@
 	{
 		hex = strtoll( cString , NULL , 16 );
 	}
-	
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	AVColor *color = [self colorWithAlphaHex: (unsigned int)hex];
+#pragma clang diagnostic pop
 	return color;
 }
 // deprecated
@@ -266,7 +267,7 @@
 	const CGFloat *components = CGColorGetComponents( [color CGColor] );
 	// Multiply it by 255 and display the result using an uppercase hexadecimal specifier (%X) with a character length of 2
 	NSString *hexadecimal = [NSString stringWithFormat: @"#%02X%02X%02X" , (int)(255 * components[0]) , (int)(255 * components[1]) , (int)(255 * components[2])];
-	
+
 	return hexadecimal;
 }
 // deprecated
@@ -563,7 +564,7 @@
 {
 	// make sure that the hexadecimal value is in uppercase letters
 	hexadecimal = [hexadecimal uppercaseString];
-	NSInteger a;
+	NSUInteger a;
 	
 	/*
 	 If hexadecimal has a hash tag (#), remove it.
@@ -592,7 +593,7 @@
 	NSMutableArray *hexConverted = [[NSMutableArray alloc] init];
 	
 	// Separate all the characters
-	for ( NSInteger x = a ; x < [hexadecimal length] ; x++ )
+	for ( NSUInteger x = a ; x < [hexadecimal length] ; x++ )
 	{
 		[hexArray insertObject: [hexadecimal substringWithRange: NSMakeRange( x , 1)] atIndex: x - 1];
 	}
@@ -620,9 +621,9 @@
 	 x' * 16 = (x') + y' = G
 	 x" * 16 = (x") + y" = B
 	 */
-	for ( NSInteger x = 0 ; x < [hexConverted count] ; x++ )
+	for ( NSUInteger x = 0 ; x < [hexConverted count] ; x++ )
 	{
-		switch (x)
+		switch ( x )
 		{
 			case 0 :
 			{
@@ -652,3 +653,5 @@
 }
 
 @end
+
+#pragma clang diagnostic pop

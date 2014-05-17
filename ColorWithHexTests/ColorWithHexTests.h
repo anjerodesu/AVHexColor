@@ -9,9 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 
-@interface ColorWithHexTests : SenTestCase {
-@private
-    
-}
+@interface ColorWithHexTests : SenTestCase
 
 @end
