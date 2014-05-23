@@ -28,7 +28,7 @@ UIColor *colorWithHex = [AVHexColor colorWithHexString: @"#8f6c"];
 // hex
 NSColor *colorWithHex = [AVHexColor colorWithHex: 0xF00];
 // string
-UIColor *colorWithHex = [AVHexColor colorWithHexString: @"#8f6c"];
+NSColor *colorWithHex = [AVHexColor colorWithHexString: @"#8f6c"];
 ```
 
 Install
@@ -41,7 +41,7 @@ via [CocoaPods](http://cocoapods.org)
 
 ```ruby
 platform :ios
-pod 'AVHexColor', '~> 1.1.0'
+pod 'AVHexColor', '~> 1.2.0'
 ```
 
 ### Alternatives
