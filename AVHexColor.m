@@ -35,11 +35,37 @@
 @implementation AVHexColor
 
 #pragma mark - Category Methods
++ (AVColor *)colorWithFullHex:(UInt32)hexadecimal
+{
+    CGFloat red, green, blue, alpha = 1.0f;
+    NSString *hexString = [NSString stringWithFormat: @"%X" , (unsigned int)hexadecimal];
+
+    if ( hexString.length == 8 )
+    {
+        // bitwise AND operation
+        // hexadecimal's first 2 values
+        alpha = (CGFloat)(( hexadecimal >> 24 ) & 0xFF ) / 255.0f;
+        // hexadecimal's third and fourth values
+        red = (CGFloat)(( hexadecimal >> 16 ) & 0xFF ) / 255.0f;
+        // hexadecimal's fifth and sixth values
+        green = (CGFloat)(( hexadecimal >> 8 ) & 0xFF ) / 255.0f;
+        // hexadecimal's seventh and eighth
+        blue = (CGFloat)( hexadecimal & 0xFF ) / 255.0f;
+    }
+    else
+    {
+        return nil;
+    }
+
+    AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:alpha];
+    return color;
+}
+
 + (AVColor *)colorWithHex:(UInt32)hexadecimal
 {
 	CGFloat red, green, blue, alpha = 1.0f;
 	NSString *hexString = [NSString stringWithFormat: @"%03X" , (unsigned int)hexadecimal];
-	
+
 	if ( hexString.length == 3 )
 	{
 		// bitwise AND operation
@@ -88,7 +114,7 @@
 	{
 		return nil;
 	}
-	
+
 	AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:alpha];
 	return color;
 }

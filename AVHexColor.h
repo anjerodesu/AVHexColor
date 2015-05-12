@@ -44,15 +44,9 @@
 /*
  * Convert hexadecimal value to RGB
  *
- * Accepts several hex length:
- * 		1 = 0xB
- * 		2 = 0xGB
- *		3 = 0xRGB
- *		4 = 0xaRGB
- *		6 = 0xRRGGBB
- *		8 = 0xaaRRGGBB
+ * Accepts several hex in full format: 0xaaRRGGBB
  */
-+ (AVColor *)colorWithHex:(UInt32)hexadecimal;
++ (AVColor *)colorWithFullHex:(UInt32)hexadecimal;
 
 /*
  * Convert string hex value to RGB
@@ -64,6 +58,19 @@
  *		8 = #aaRRGGBB
  */
 + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
+
+/*
+ * Convert hexadecimal value to RGB
+ *
+ * Accepts several hex length:
+ * 		1 = 0xB
+ * 		2 = 0xGB
+ *		3 = 0xRGB
+ *		4 = 0xaRGB
+ *		6 = 0xRRGGBB
+ *		8 = 0xaaRRGGBB
+ */
++ (AVColor *)colorWithHex:(UInt32)hexadecimal __attribute__((deprecated("Use 'colorWithFullHex:' instead")));
 
 /*
  * Convert hexadecimal value to RGB
