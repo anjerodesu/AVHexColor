@@ -100,7 +100,7 @@
 		6D4E395F137CCF59008DEEFC /* ColorWithHexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorWithHexViewController.h; sourceTree = "<group>"; };
 		6D4E3960137CCF59008DEEFC /* ColorWithHexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorWithHexViewController.m; sourceTree = "<group>"; };
 		6D4E3963137CCF59008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorWithHexViewController.xib; sourceTree = "<group>"; };
-		6D4E396A137CCF59008DEEFC /* ColorWithHexTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorWithHexTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4E396A137CCF59008DEEFC /* ColorWithHexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColorWithHexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D4E3972137CCF5A008DEEFC /* ColorWithHexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ColorWithHexTests-Info.plist"; sourceTree = "<group>"; };
 		6D4E3974137CCF5A008DEEFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6D4E3976137CCF5A008DEEFC /* ColorWithHexTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ColorWithHexTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -226,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				6D4E3946137CCF59008DEEFC /* ColorWithHex.app */,
-				6D4E396A137CCF59008DEEFC /* ColorWithHexTests.octest */,
+				6D4E396A137CCF59008DEEFC /* ColorWithHexTests.xctest */,
 				17055B031844498300FEC81C /* ColorWithHex Mac.app */,
 				17055B221844498400FEC81C /* ColorWithHex MacTests.xctest */,
 			);
@@ -372,8 +372,8 @@
 			);
 			name = ColorWithHexTests;
 			productName = ColorWithHexTests;
-			productReference = 6D4E396A137CCF59008DEEFC /* ColorWithHexTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 6D4E396A137CCF59008DEEFC /* ColorWithHexTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -846,19 +846,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorWithHexTests/ColorWithHexTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ColorWithHexTests/ColorWithHexTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -870,19 +865,14 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ColorWithHexTests/ColorWithHexTests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "ColorWithHexTests/ColorWithHexTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

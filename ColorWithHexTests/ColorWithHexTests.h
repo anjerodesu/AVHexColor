@@ -6,9 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 
-@interface ColorWithHexTests : SenTestCase
+@interface ColorWithHexTests : XCTestCase
 
 @end

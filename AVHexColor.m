@@ -4,7 +4,7 @@
 //
 //  Created by Angelo Villegas on 3/24/11.
 //  Copyright (c) 2011 Angelo Villegas. All rights reserved.
-//	http://www.studiovillegas.com/
+//	http://angelovillegas.com/
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -30,11 +30,25 @@
 
 #import "AVHexColor.h"
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCUnusedMethodInspection"
+@interface AVHexColor ()
+
+// ObjC (manual hex conversion to RGB)
++ (AVColor *)colorWithHexa:(NSString *)hexadecimal;
+
+@end
+
 @implementation AVHexColor
 
 #pragma mark - Category Methods
+
+/**
+ * Convert hexadecimal value to iOS-based RGB color.
+ *
+ * @note Only hexadecimal value in full format: @p 0x[aaRRGGBB].
+ *
+ * @param hexadecimal A hexadecimal value that consists of an alpha, Red, Green, and Blue.
+ * @return The AVColor object. The color information represented by this object is in the device RGB colorspace.
+ */
 + (AVColor *)colorWithFullHex:(UInt32)hexadecimal
 {
     CGFloat red, green, blue, alpha = 1.0f;
@@ -61,6 +75,27 @@
     return color;
 }
 
+/**
+ * Convert hexadecimal value to iOS-based RGB color.
+ *
+ * @note Accepts several hex length:
+ *
+ *      1 = 0xB
+ *
+ *      2 = 0xGB
+ *
+ *      3 = 0xRGB
+ *
+ *      4 = 0xaRGB
+ *
+ *      6 = 0xRRGGBB
+ *
+ *      8 = 0xaaRRGGBB
+ *
+ * @param hexadecimal A hexadecimal value that consists of an alpha, Red, Green, and Blue.
+ * @return The AVColor object. The color information represented by this object is in the device RGB colorspace.
+ */
+// deprecated: Use 'colorWithFullHex:' instead.
 + (AVColor *)colorWithHex:(UInt32)hexadecimal
 {
 	CGFloat red, green, blue, alpha = 1.0f;
@@ -119,6 +154,22 @@
 	return color;
 }
 
+/**
+ * Convert string hex value to RGB.
+ *
+ * @note Accepts several hex length:
+ *
+ *      3 = #RGB
+ *
+ *      4 = #aRGB
+ *
+ *      6 = #RRGGBB
+ *
+ *      8 = #aaRRGGBB
+ *
+ * @param hexadecimal A hexadecimal value that consists of an alpha, Red, Green, and Blue.
+ * @return The AVColor object. The color information represented by this object is in the device RGB colorspace.
+ */
 + (AVColor *)colorWithHexString:(NSString *)hexadecimal
 {
 	
@@ -177,12 +228,27 @@
 	return color;
 }
 
+/**
+ * Convert AVColor object to NSString hexadecimal color value.
+ *
+ * @param color The AVColor object.
+ * @return A string hexadecimal value with hash tag (#).
+ */
 + (NSString *)hexStringFromColor:(AVColor *)color
 {
 	NSString *string = [self hexStringFromColor: color withHash: YES];
 	return string;
 }
 
+/**
+ * Convert AVColor object to NSString hexadecimal color value.
+ *
+ * @note Returns a string hexadecimal value with hash tag (#) as default.
+ *
+ * @param color The AVColor object
+ * @param withHash A boolean value that returns a string value with hash tag (#) if YES.
+ * @return A string hexadecimal value with an optional hash tag (#) character.
+ */
 + (NSString *)hexStringFromColor:(AVColor *)color withHash:(BOOL)withHash
 {
 	// get the color components of the color
@@ -212,6 +278,16 @@
 	return hexadecimal;
 }
 
+/**
+ * Convert RGB value to NSString hexadecimal colour value.
+ *
+ * @note Returns a string hexadecimal value with hash tag (#) as default.
+ *
+ * @param red The red component of the color object, specified as a value from 0.0 to 1.0.
+ * @param green The green component of the color object, specified as a value from 0.0 to 1.0.
+ * @param blue The blue component of the color object, specified as a value from 0.0 to 1.0.
+ * @return A string hexadecimal value with an optional hash tag (#) character.
+ */
 + (NSString *)hexStringWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
 	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: 1.0f];
@@ -219,6 +295,11 @@
 	return string;
 }
 
+/**
+ * Generate a random color.
+ *
+ * @return The AVColor object. The color information represented by this object is in the device RGB colorspace.
+ */
 + (AVColor *)randomColor
 {
 	static BOOL generated = NO;
@@ -237,13 +318,18 @@
 	CGFloat green = (CGFloat)random() / (CGFloat)RAND_MAX;
 	CGFloat blue = (CGFloat)random() / (CGFloat)RAND_MAX;
 
-	AVColor *color = [AVColor colorWithRed: red green: green blue: blue alpha: 1.0f];
+	AVColor *color = [AVColor colorWithRed:red green:green blue:blue alpha:1.0f];
 	return color;
 }
 
 #pragma mark - Deprecated Methods
 
-// deprecated: Use 'colorWithHex:' instead.
+/**
+ * Convert hexadecimal value to RGB.
+ *
+ * @note Only hexadecimal value in full format: @p 0x[aaRRGGBB].
+ */
+// deprecated: Use 'colorWithFullHex:' instead.
 + (AVColor *)colorWithAlphaHex:(UInt32)hexadecimal
 {
 	CGFloat red, green, blue, alpha;
@@ -261,8 +347,13 @@
 	AVColor *color = [AVColor colorWithRed: red / 255.0f green: green / 255.0f blue: blue / 255.0f alpha: alpha / 255.0f];
     return color;
 }
-// deprecated
 
+/**
+ * Convert string hex value to RGB.
+ *
+ * @param hexadecimal A hexadecimal value that consists of a Red, Green, and Blue.
+ * @return The AVColor object. The color information represented by this object is in the device RGB colorspace.
+ */
 // deprecated: Use 'colorWithHexString:' instead.
 + (AVColor *)colorWithAlphaHexString:(NSString *)hexadecimal
 {
@@ -284,8 +375,13 @@
 #pragma clang diagnostic pop
 	return color;
 }
-// deprecated
 
+/**
+ * Convert AVColor object to NSString hexadecimal color value.
+ *
+ * @param color The AVColor object.
+ * @return A string hexadecimal value with hash tag (#) as default.
+ */
 // deprecated: Use 'hexStringFromColor:' instead.
 + (NSString *)colorWithRGBToHex:(AVColor *)color
 {
@@ -296,291 +392,620 @@
 
 	return hexadecimal;
 }
-// deprecated
 
 #pragma mark - Convenience Methods
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF808000.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)oliveColor
 {
-	return [self colorWithHex: 0x808000];
+	return [self colorWithFullHex: 0xFF808000];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFF0FFFF.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)azureColor
 {
-	return [self colorWithHex: 0xF0FFFF];
+	return [self colorWithFullHex: 0xFFF0FFFF];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFDA70D6.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)orchidColor
 {
-	return [self colorWithHex: 0xDA70D6];
+	return [self colorWithFullHex: 0xFFDA70D6];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFD8BFD8.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)thistleColor
 {
-	return [self colorWithHex: 0xD8BFD8];
+	return [self colorWithFullHex: 0xFFD8BFD8];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFF5F5DC.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)beigeColor
 {
-	return [self colorWithHex: 0xF5F5DC];
+	return [self colorWithFullHex: 0xFFF5F5DC];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFE3CF57.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)bananaColor
 {
-	return [self colorWithHex: 0xE3CF57];
+	return [self colorWithFullHex: 0xFFE3CF57];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFDDA0DD.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)plumColor
 {
-	return [self colorWithHex: 0xDDA0DD];
+	return [self colorWithFullHex: 0xFFDDA0DD];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF9C661F.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)brickColor
 {
-	return [self colorWithHex: 0x9C661F];
+	return [self colorWithFullHex: 0xFF9C661F];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFB22222.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)fireBrickColor
 {
-	return [self colorWithHex: 0xB22222];
+	return [self colorWithFullHex: 0xFFB22222];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF87CEEB.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)skyBlueColor
 {
-	return [self colorWithHex: 0x87CEEB];
+	return [self colorWithFullHex: 0xFF87CEEB];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFF0E68C.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)khakiColor
 {
-	return [self colorWithHex: 0xF0E68C];
+	return [self colorWithFullHex: 0xFFF0E68C];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFF5DEB3.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)wheatColor
 {
-	return [self colorWithHex: 0xF5DEB3];
+	return [self colorWithFullHex: 0xFFF5DEB3];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFDEB887.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)burlywoodColor
 {
-	return [self colorWithHex: 0xDEB887];
+	return [self colorWithFullHex: 0xFFDEB887];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF5F9EA0.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)cadetBlueColor
 {
-	return [self colorWithHex: 0x5F9EA0];
+	return [self colorWithFullHex: 0xFF5F9EA0];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFED9121.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)carrotColor
 {
-	return [self colorWithHex: 0xED9121];
+	return [self colorWithFullHex: 0xFFED9121];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF4B0082.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)indigoColor
 {
-	return [self colorWithHex: 0x4B0082];
+	return [self colorWithFullHex: 0xFF4B0082];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF800000.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)maroonColor
 {
-	return [self colorWithHex: 0x800000];
+	return [self colorWithFullHex: 0xFF800000];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF007BA7.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)ceruleanColor
 {
-	return [self colorWithHex: 0x007BA7];
+	return [self colorWithFullHex: 0xFF007BA7];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFFE4B5.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)moccasinColor
 {
-	return [self colorWithHex: 0xFFE4B5];
+	return [self colorWithFullHex: 0xFFFFE4B5];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFD2B48C.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)tanColor
 {
-	return [self colorWithHex: 0xD2B48C];
+	return [self colorWithFullHex: 0xFFD2B48C];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFE3A869.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)melonColor
 {
-	return [self colorWithHex: 0xE3A869];
+	return [self colorWithFullHex: 0xFFE3A869];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF3D59AB.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)cobaltColor
 {
-	return [self colorWithHex: 0x3D59AB];
+	return [self colorWithFullHex: 0xFF3D59AB];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFDC143C.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)crimsonColor
 {
-	return [self colorWithHex: 0xDC143C];
+	return [self colorWithFullHex: 0xFFDC143C];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFFE4E1.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)mistyRoseColor
 {
-	return [self colorWithHex: 0xFFE4E1];
+	return [self colorWithFullHex: 0xFFFFE4E1];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFFC0CB.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)pinkColor
 {
-	return [self colorWithHex: 0xFFC0CB];
+	return [self colorWithFullHex: 0xFFFFC0CB];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF5A4FCF.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)irisColor
 {
-	return [self colorWithHex: 0x5A4FCF];
+	return [self colorWithFullHex: 0xFF5A4FCF];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF7FFF00.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)chartreuseColor
 {
-	return [self colorWithHex: 0x7FFF00];
+	return [self colorWithFullHex: 0xFF7FFF00];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF000080.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)navyColor
 {
-	return [self colorWithHex: 0x000080];
+	return [self colorWithFullHex: 0xFF000080];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFBDFCC9.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)mintColor
 {
-	return [self colorWithHex: 0xBDFCC9];
+	return [self colorWithFullHex: 0xFFBDFCC9];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF008080.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)tealColor
 {
-	return [self colorWithHex: 0x008080];
+	return [self colorWithFullHex: 0xFF008080];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFEE82EE.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)violetColor
 {
-	return [self colorWithHex: 0xEE82EE];
+	return [self colorWithFullHex: 0xFFEE82EE];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF32CD32.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)limeColor
 {
-	return [self colorWithHex: 0x32CD32];
+	return [self colorWithFullHex: 0xFF32CD32];
+}
+
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFDAA520.
+ *
+ * @return The AVColor object.
+ */
++ (AVColor *)goldenRodColor
+{
+	return [self colorWithFullHex: 0xFFDAA520];
+}
+
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFDF5E6.
+ *
+ * @return The AVColor object.
+ */
++ (AVColor *)oldLaceColor
+{
+	return [self colorWithFullHex: 0xFFFDF5E6];
 }
 
 #pragma mark Alloy Colors
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFCD7F32.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)bronzeColor
 {
-	return [self colorWithHex: 0xCD7F32];
+	return [self colorWithFullHex: 0xFFCD7F32];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFFD700.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)goldColor
 {
-	return [self colorWithHex: 0xFFD700];
+	return [self colorWithFullHex: 0xFFFFD700];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFC0C0C0.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)silverColor
 {
-	return [self colorWithHex: 0xC0C0C0];
+	return [self colorWithFullHex: 0xFFC0C0C0];
+}
+
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF4682B4.
+ *
+ * @return The AVColor object.
+ */
++ (AVColor *)steelBlueColor
+{
+	return [self colorWithFullHex: 0xFF4682B4];
+}
+
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFF9912.
+ *
+ * @return The AVColor object.
+ */
++ (AVColor *)cadmiumYellowColor
+{
+	return [self colorWithFullHex: 0xFFFF9912];
+}
+
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFF6103.
+ *
+ * @return The AVColor object.
+ */
++ (AVColor *)cadmiumOrangeColor
+{
+	return [self colorWithFullHex: 0xFFFF6103];
 }
 
 #pragma mark Gem Colors
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF50C878.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)emeraldColor
 {
-	return [self colorWithHex: 0x50C878];
+	return [self colorWithFullHex: 0xFF50C878];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFE0115F.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)rubyColor
 {
-	return [self colorWithHex: 0xE0115F];
+	return [self colorWithFullHex: 0xFFE0115F];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF082567.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)sapphireColor
 {
-	return [self colorWithHex: 0x082567];
+	return [self colorWithFullHex: 0xFF082567];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF7FFFD4.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)aquamarineColor
 {
-	return [self colorWithHex: 0x7FFFD4];
+	return [self colorWithFullHex: 0xFF7FFFD4];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF40E0D0.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)turquoiseColor
 {
-	return [self colorWithHex: 0x40E0D0];
+	return [self colorWithFullHex: 0xFF40E0D0];
 }
 
 #pragma mark Dark Colors
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF8B0000.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkRedColor
 {
-	return [self colorWithHex: 0x8B0000];
+	return [self colorWithFullHex: 0xFF8B0000];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF006400.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkGreenColor
 {
-	return [self colorWithHex: 0x006400];
+	return [self colorWithFullHex: 0xFF006400];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF00008B.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkBlueColor
 {
-	return [self colorWithHex: 0x00008B];
+	return [self colorWithFullHex: 0xFF00008B];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF008B8B.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkCyanColor
 {
-	return [self colorWithHex: 0x008B8B];
+	return [self colorWithFullHex: 0xFF008B8B];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFB5A42E.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkYellowColor
 {
-	return [self colorWithHex: 0xB5A42E];
+	return [self colorWithFullHex: 0xFFB5A42E];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF8B008B.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkMagentaColor
 {
-	return [self colorWithHex: 0x8B008B];
+	return [self colorWithFullHex: 0xFF8B008B];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFF8C00.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkOrangeColor
 {
-	return [self colorWithHex: 0xFF8C00];
+	return [self colorWithFullHex: 0xFFFF8C00];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF9400D3.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)darkVioletColor
 {
-	return [self colorWithHex: 0x9400D3];
+	return [self colorWithFullHex: 0xFF9400D3];
 }
 
 #pragma mark Light Colors
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFF26C4F.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightRedColor
 {
-	return [self colorWithHex: 0xF26C4F];
+	return [self colorWithFullHex: 0xFFF26C4F];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFF90EE90.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightGreenColor
 {
-	return [self colorWithHex: 0x90EE90];
+	return [self colorWithFullHex: 0xFF90EE90];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFADD8E6.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightBlueColor
 {
-	return [self colorWithHex: 0xADD8E6];
+	return [self colorWithFullHex: 0xFFADD8E6];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFE0FFFF.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightCyanColor
 {
-	return [self colorWithHex: 0xE0FFFF];
+	return [self colorWithFullHex: 0xFFE0FFFF];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFFFFE0.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightYellowColor
 {
-	return [self colorWithHex: 0xFFFFE0];
+	return [self colorWithFullHex: 0xFFFFFFE0];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFFF77FF.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightMagentaColor
 {
-	return [self colorWithHex: 0xFF77FF];
+	return [self colorWithFullHex: 0xFFFF77FF];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFE7B98A.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightOrangeColor
 {
-	return [self colorWithHex: 0xE7B98A];
+	return [self colorWithFullHex: 0xFFE7B98A];
 }
 
+/**
+ * Returns a color object whose hexadecimal value is @p 0xFFB98AE7.
+ *
+ * @return The AVColor object.
+ */
 + (AVColor *)lightVioletColor
 {
-	return [self colorWithHex: 0xB98AE7];
+	return [self colorWithFullHex: 0xFFB98AE7];
 }
 
 #pragma mark -
@@ -679,5 +1104,3 @@
 }
 
 @end
-
-#pragma clang diagnostic pop

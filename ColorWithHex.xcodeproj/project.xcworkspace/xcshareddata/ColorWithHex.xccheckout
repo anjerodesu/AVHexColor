@@ -10,29 +10,29 @@
 	<string>ColorWithHex</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>755DF5A2-6E93-4FC6-BB2E-7E266174183B</key>
-		<string>https://github.com/anjerodesu/AVHexColor</string>
+		<key>94E228DCF3BB22CC7071B387B6947E6B375ADFA0</key>
+		<string>github.com:anjerodesu/AVHexColor.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ColorWithHex.xcodeproj/project.xcworkspace</string>
+	<string>ColorWithHex.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>755DF5A2-6E93-4FC6-BB2E-7E266174183B</key>
+		<key>94E228DCF3BB22CC7071B387B6947E6B375ADFA0</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/anjerodesu/AVHexColor</string>
+	<string>github.com:anjerodesu/AVHexColor.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>755DF5A2-6E93-4FC6-BB2E-7E266174183B</string>
+	<string>94E228DCF3BB22CC7071B387B6947E6B375ADFA0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>755DF5A2-6E93-4FC6-BB2E-7E266174183B</string>
+			<string>94E228DCF3BB22CC7071B387B6947E6B375ADFA0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AVHexColor</string>
 		</dict>

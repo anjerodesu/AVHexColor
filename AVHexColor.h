@@ -4,7 +4,7 @@
 //
 //  Created by Angelo Villegas on 3/24/11.
 //  Copyright (c) 2011 Angelo Villegas. All rights reserved.
-//	http://www.studiovillegas.com/
+//	http://angelovillegas.com/
 //
 //  Permission is hereby granted, free of charge, to any person
 //  obtaining a copy of this software and associated documentation
@@ -30,9 +30,6 @@
 
 #import <Foundation/Foundation.h>
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCUnusedMethodInspection"
-
 #if TARGET_OS_IPHONE
 #define AVColor UIColor
 #else
@@ -41,48 +38,18 @@
 
 @interface AVHexColor : NSObject
 
-/*
- * Convert hexadecimal value to RGB
- *
- * Accepts several hex in full format: 0xaaRRGGBB
- */
 + (AVColor *)colorWithFullHex:(UInt32)hexadecimal;
-
-/*
- * Convert string hex value to RGB
- *
- * Accepts several hex length:
- *		3 = #RGB
- *		4 = #aRGB
- *		6 = #RRGGBB
- *		8 = #aaRRGGBB
- */
 + (AVColor *)colorWithHexString:(NSString *)hexadecimal;
 
-/*
- * Convert hexadecimal value to RGB
- *
- * Accepts several hex length:
- * 		1 = 0xB
- * 		2 = 0xGB
- *		3 = 0xRGB
- *		4 = 0xaRGB
- *		6 = 0xRRGGBB
- *		8 = 0xaaRRGGBB
- */
+// deprecated due to no way to tell how many leading zeros
 + (AVColor *)colorWithHex:(UInt32)hexadecimal __attribute__((deprecated("Use 'colorWithFullHex:' instead")));
 
-/*
- * Convert hexadecimal value to RGB
- * format:
- *		0x = Hexadecimal specifier (# for strings)
- *		ff = alpha, ff = red, ff = green, ff = blue
- */
 + (AVColor *)colorWithAlphaHex:(UInt32)hexadecimal __attribute__((deprecated("Use 'colorWithHex:' instead")));
 + (AVColor *)colorWithAlphaHexString:(NSString *)hexadecimal __attribute__((deprecated("Use 'colorWithHexString:' instead.")));
 
 // Return the hexadecimal value of the RGB color specified.
 + (NSString *)colorWithRGBToHex:(AVColor *)color __attribute__((deprecated("Use 'hexStringFromColor:' instead.")));
+
 + (NSString *)hexStringFromColor:(AVColor *)color;
 + (NSString *)hexStringFromColor:(AVColor *)color withHash:(BOOL)withHash;
 + (NSString *)hexStringWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
@@ -123,10 +90,15 @@
 + (AVColor *)tealColor;					// 008080
 + (AVColor *)violetColor;				// EE82EE
 + (AVColor *)limeColor;					// 32CD32
++ (AVColor *)goldenRodColor;			// DAA520
++ (AVColor *)oldLaceColor;				// FDF5E6
 // Alloy Colors
 + (AVColor *)bronzeColor;				// CD7F32
 + (AVColor *)goldColor;					// FFD700
 + (AVColor *)silverColor;				// C0C0C0
++ (AVColor *)steelBlueColor;			// 4682B4
++ (AVColor *)cadmiumYellowColor;		// FF9912
++ (AVColor *)cadmiumOrangeColor;		// FF6103
 // Gem Colors
 + (AVColor *)emeraldColor;				// 50C878
 + (AVColor *)rubyColor;					// E0115F
@@ -152,8 +124,4 @@
 + (AVColor *)lightOrangeColor;			// E7B98A
 + (AVColor *)lightVioletColor;			// B98AE7
 
-// ObjC (manual hex conversion to RGB)
-+ (AVColor *)colorWithHexa:(NSString *)hexadecimal;
-
 @end
-#pragma clang diagnostic pop
